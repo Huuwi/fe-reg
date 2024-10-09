@@ -35,8 +35,7 @@ function HeaderDashBoard(props) {
 
 
     const avatarStyle = {
-
-        backgroundImage: `url("src/assets/avatar/${infor.curentLevel}.png")`,
+        backgroundImage: `url("../assets/avatar/${infor.curentLevel}.png")`,
         height: '120px',
         width: '120px',
         backgroundSize: '120px 120px',
