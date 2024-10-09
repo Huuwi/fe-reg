@@ -1,0 +1,167 @@
+.wrapper {
+    height: 100vh;
+    width: 100%;
+    background-image: url("../backgoundloginpage.png");
+    background-size: cover;
+    /* Đảm bảo nền phủ toàn bộ màn hình */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Căn giữa ảnh nền */
+    background-color: rgb(236, 150, 164);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    /* Thêm padding để tạo không gian giữa màn hình và nội dung */
+}
+
+.div_loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(27, 3, 3, 0.8);
+    /* Tăng độ mờ để dễ đọc hơn */
+    padding: 30px;
+    /* Tạo khoảng cách giữa nội dung và viền */
+    border-radius: 15px;
+    /* Bo tròn góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Bóng đổ */
+    max-width: 400px;
+    /* Đảm bảo form không quá lớn */
+    width: 100%;
+    /* Giữ cho form linh hoạt theo màn hình */
+}
+
+.span_login {
+    font-size: 30px;
+    color: white;
+    text-shadow: 3px 3px #ff0000;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    /* Input chiếm toàn bộ chiều rộng */
+    min-height: 40px;
+    /* Tăng chiều cao cho input */
+    margin-bottom: 20px;
+    padding: 10px;
+    /* Thêm padding cho input */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: none;
+    /* Xóa bỏ box-shadow mặc định */
+    transition: box-shadow 0.3s ease;
+}
+
+.input:focus {
+    box-shadow: 0 0 15px rgba(31, 160, 93, 0.7);
+    outline: none;
+    /* Xóa bỏ viền outline mặc định khi focus */
+}
+
+.btn_login {
+    height: 50px;
+    width: 70%;
+    background-image: url("../kameha1.png");
+    background-size: 100% 100%;
+    border-radius: 10px;
+    transition: opacity 0.2s, background-image 0.3s ease;
+    margin-bottom: 10px;
+    /* Tạo khoảng cách dưới nút */
+}
+
+.btn_login:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: 0 8px 16px rgba(0, 0, 255, 0.5);
+    background-image: url("../kameha2.png");
+    background-size: 100% 100%;
+}
+
+.btn_span {
+    color: white;
+    background-color: rgba(27, 3, 3, 0.5);
+    font-size: 15px;
+}
+
+.div_reg {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.div_reg_span {
+    font-size: 15px;
+    color: white;
+    text-shadow: 2px 2px #94a534;
+}
+
+.div_reg_link {
+    color: #ee3f1c;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.div_reg_link:hover {
+    color: greenyellow;
+}
+
+.notification,
+.errorSpan {
+    color: red;
+    background-color: rgba(249, 246, 246, 0.8);
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 10px;
+        /* Điều chỉnh padding để hiển thị tốt hơn trên thiết bị nhỏ */
+    }
+
+    .div_loginForm {
+        width: 100%;
+        /* Form chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+        max-width: 100%;
+        /* Loại bỏ giới hạn chiều rộng */
+        padding: 20px;
+    }
+
+    .span_login {
+        font-size: 25px;
+        /* Giảm kích thước chữ để phù hợp với màn hình nhỏ */
+    }
+
+    .input,
+    .btn_login {
+        min-height: 45px;
+        /* Tăng chiều cao input và nút trên màn hình nhỏ */
+    }
+}
+
+@media (max-width: 480px) {
+    .span_login {
+        font-size: 22px;
+    }
+
+    .input,
+    .btn_login {
+        min-height: 40px;
+        font-size: 16px;
+        /* Giảm kích thước font trong input cho màn hình nhỏ */
+    }
+
+    .div_loginForm {
+        padding: 15px;
+    }
+}

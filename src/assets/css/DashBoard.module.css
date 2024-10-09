@@ -1,0 +1,88 @@
+.content {
+    width: 100%;
+    height: 77vh;
+    background-image: url("../images/backgroundDashBoard.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+button {
+    height: 90px;
+    min-width: 250px;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color: rgb(53, 199, 70);
+    transition: transform .3s, opacity .2s;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 5px 5px 5px red;
+    opacity: .9;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 77vh;
+    background-color: rgb(255, 255, 255, .5);
+}
+
+.wrapBtn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 50vh;
+    width: 900px;
+    background-color: rgb(61, 57, 57, .5);
+    margin-top: 50px;
+    border-radius: 20px;
+}
+
+.option {
+    background-color: aliceblue;
+    padding-left: 20px;
+    position: relative;
+    left: 40px;
+}
+
+@media (max-width: 768px) {
+    .wrapBtn {
+        flex-direction: column;
+        /* Chuyển nút thành hàng dọc khi màn hình nhỏ */
+        width: 100%;
+    }
+
+    button {
+        min-width: 200px;
+        /* Giảm chiều rộng nút khi màn hình nhỏ */
+        font-size: 18px;
+        /* Giảm kích thước chữ cho phù hợp */
+    }
+
+    .option {
+        font-size: 22px;
+        /* Giảm kích thước tiêu đề */
+    }
+}
+
+@media (max-width: 480px) {
+    button {
+        min-width: 150px;
+        /* Tăng tính linh hoạt cho nút trên màn hình nhỏ */
+        height: 70px;
+        font-size: 16px;
+    }
+
+    .option {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,83 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import DashBoard from "./pages/auth/DashBoard.jsx";
+import RegModule from "./pages/auth/RegModule.jsx";
+import DashBoardRecharge from "./pages/auth/DashBoardRecharge.jsx";
+
+import ERSA from "./helper/ERSA.js"
+import sha256 from "./helper/ESHA256.js";
+
+function App() {
+  console.log("render-app");
+
+  const url = import.meta.env.VITE_BACKEND_URL;
+  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+  const location = useLocation();  // Lấy URL hiện tại
+
+  useEffect(() => {
+    let jsonData = localStorage.getItem("userData");
+    let rt = localStorage.getItem("rt");
+
+    if (jsonData && rt) {
+      setUserData(JSON.parse(jsonData));
+      if (location.pathname == "/") {
+        navigate('/dashBoard')
+      }
+
+      navigate(location.pathname);  // Điều hướng lại trang hiện tại
+      return;
+    }
+
+    if (rt) {
+      document.cookie = `rt=${rt}`;
+
+      async function fetchData() {
+        try {
+          let rdn = Date.now() + Math.random();
+          let verifyCode = await sha256(rdn + "9ea41530dc5940d2d81f862fd5ecc7b75018d213f792782473fc30658859263e");
+          let rsn = Date.now() + Math.random();
+          let rsne = await ERSA(rsn);
+          let payLoad = { rdn, verifyCode, rsn, rsne };
+
+          await axios.post(`${url}/getNewAccessToken`, payLoad, { withCredentials: true });
+          try {
+            const response = await axios.get(`${url}/auth/getInforUser`, { withCredentials: true });
+            setUserData(response.data?.userData);
+            localStorage.setItem("userData", JSON.stringify(response.data?.userData));
+            navigate(location.pathname);  // Điều hướng lại trang hiện tại sau khi lấy dữ liệu user thành công
+          } catch (error) {
+            console.log(error?.response?.data?.message);
+            navigate("/loginPage");
+          }
+        } catch (error) {
+          console.log(error?.response?.data?.message);
+          navigate("/loginPage");
+        }
+      }
+
+      fetchData();
+    } else {
+      navigate("/loginPage");
+    }
+  }, [navigate, location.pathname]);  // Thêm dependency `location.pathname` để điều hướng đúng trang hiện tại
+
+  return (
+    <>
+      <Routes>
+        <Route path="/loginPage" element={<LoginPage />} />
+        <Route path="/dashBoard" element={<DashBoard userData={userData} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/regModule" element={<RegModule userData={userData} />} />
+        <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />
+      </Routes>
+    </>
+  );
+}
+
+export default App;
