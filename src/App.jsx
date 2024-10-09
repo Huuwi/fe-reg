@@ -75,6 +75,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/regModule" element={<RegModule userData={userData} />} />
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />
+        <Route path="/payment" element={<DashBoardRecharge userData={userData} />} />
       </Routes>
     </>
   );

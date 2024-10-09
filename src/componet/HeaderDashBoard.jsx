@@ -63,8 +63,8 @@ function HeaderDashBoard(props) {
             <div className={styles.wrapper} >
                 <div className={styles.div_left}>
                     <p> {`xin chào, ${username} 👨🏻‍💻 `}</p>
-                    <p>{`số dư của bạn là : ${balance} xu 💎`}</p>
-                    <p>{`mã giới thiệu của bạn là : ${referralCode} 📓`}</p>
+                    <p>{`số dư : ${balance} xu 💎`}</p>
+                    <p>{`mã giới thiệu của bạn : ${referralCode} 📓`}</p>
                 </div>
 
 

@@ -14,7 +14,7 @@ button {
     min-width: 250px;
     border-radius: 20px;
     font-size: 20px;
-    background-color: rgb(53, 199, 70);
+    background-color: rgb(34, 126, 211);
     transition: transform .3s, opacity .2s;
 }
 

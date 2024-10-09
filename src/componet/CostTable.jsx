@@ -33,6 +33,9 @@ function CostTable(props) {
             <span id={e.id} onClick={handleOnClick} style={{ ...textCss }} >{`số tiền nạp Là : ${e.amount}k, ưu đãi : ${e.salesReferral * 100}%`} </span>
         </div>
     })
+    function handleSubmit() {
+
+    }
 
 
     return (
@@ -43,7 +46,7 @@ function CostTable(props) {
                     {divsTypeCost}
                     <input type="text" placeholder="nhập mã giới thiệu ở đây để nhận ưu đãi" style={{ maxWidth: "500px" }} onChange={handleOnchageReferral} />
                 </div>
-                <button  >xác nhận</button>
+                <button onClick={handleSubmit}  > xác nhận</button>
             </div>
         </>
     )
