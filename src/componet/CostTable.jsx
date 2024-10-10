@@ -1,9 +1,9 @@
 import { useState } from "react"
-
 import styles from "../assets/css/CostTable.module.css"
-
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 function CostTable(props) {
-
+    let navigate = useNavigate()
     let { costTable } = props
     let [idSelected, setIdSelected] = useState(costTable[costTable.length - 1].id)
     let [Referral, setReferral] = useState('')
@@ -33,7 +33,40 @@ function CostTable(props) {
             <span id={e.id} onClick={handleOnClick} style={{ ...textCss }} >{`số tiền nạp Là : ${e.amount}k, ưu đãi : ${e.salesReferral * 100}%`} </span>
         </div>
     })
-    function handleSubmit() {
+    async function handleSubmit() {
+        let userData = localStorage.getItem("userData");
+        if (!userData) {
+            navigate("/loginPage")
+            return
+        }
+        userData = JSON.parse(userData)
+        let dataPostCreatePaymentLink = {
+            amount: costTable[idSelected].amount * 1000,
+            description: userData.username
+        }
+
+        try {
+            let data = await axios.post(import.meta.env.VITE_BACKEND_URL + '/auth/createPaymentLink', dataPostCreatePaymentLink, { withCredentials: true })
+
+            data = data.data.dataFromCreatePaymentLink
+            console.log(data.data);
+
+            if (data.data?.checkoutUrl) {
+
+                localStorage.setItem("username", userData.username)
+                localStorage.setItem("transId", data.data?.paymentLinkId)
+                localStorage.setItem("Referral", Referral)
+                window.location.href = data.data?.checkoutUrl
+            } else {
+                alert("khởi tạo giao dịch chưa thành công! thử lại.")
+            }
+            return
+
+        } catch (error) {
+            alert("khởi tạo giao dịch chưa thành công! thử lại.")
+            console.log(error);
+
+        }
 
     }
 

@@ -32,11 +32,9 @@ function DashBoard({ userData }) {
                         <button className={styles.rechargeBtn} onClick={handleClickDashBoardRecharge}>nạp tiền 💎</button>
                         <button onClick={handleClickRegMoudle} > đăng ký học phần </button>
                         <button onClick={handleClickLogOut}> đăng xuất </button>
-                        <button onClick={handleClickLogOut}> xem lịch sử nạp tiền </button>
-                        <button onClick={handleClickLogOut}> xem lịch sử đăng ký môn </button>
+                        <button onClick={handleClickLogOut}>lịch sử nạp tiền </button>
+                        <button onClick={handleClickLogOut}>lịch sử đăng ký HP </button>
                         <button onClick={handleClickLogOut}> liên hệ admin </button>
-
-
                     </div>
                 </div>
             </div>
