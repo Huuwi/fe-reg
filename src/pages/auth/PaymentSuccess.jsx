@@ -10,9 +10,9 @@ function PaymentSuccess() {
         let username = localStorage.getItem("username");
         let Referral = localStorage.getItem("Referral");
         // Xóa dữ liệu khỏi localStorage
-        // localStorage.removeItem("transId");
-        // localStorage.removeItem("username");
-        // localStorage.removeItem("Referral");
+        localStorage.removeItem("transId");
+        localStorage.removeItem("username");
+        localStorage.removeItem("Referral");
 
         // Kiểm tra điều kiện
         if (!transId || !username) {

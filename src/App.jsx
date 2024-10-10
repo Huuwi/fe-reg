@@ -8,7 +8,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import DashBoard from "./pages/auth/DashBoard.jsx";
 import RegModule from "./pages/auth/RegModule.jsx";
 import DashBoardRecharge from "./pages/auth/DashBoardRecharge.jsx";
-import PaymentSuccess from "./pages/auth/paymentSuccess.jsx";
+import PaymentSuccess from "./pages/auth/PaymentSuccess.jsx";
 
 import ERSA from "./helper/ERSA.js"
 import sha256 from "./helper/ESHA256.js";
