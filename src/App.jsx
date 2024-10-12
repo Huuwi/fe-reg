@@ -72,7 +72,7 @@ function App() {
     <>
       <Routes>
         <Route path="/loginPage" element={<LoginPage />} />
-        <Route path="/dashBoard" element={<DashBoard userData={userData} />} />
+        <Route path="/dashBoard" element={<DashBoard />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/regModule" element={<RegModule userData={userData} />} />
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />

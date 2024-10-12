@@ -8,8 +8,8 @@ function HomePage() {
 
 
     return (<>
-        <FullScreenGif gifUrl="../assets/transform/tranformationlv11.gif" ms={5000} />
-
+        <h1>HomePage</h1>
+        {/* <FullScreenGif gifUrl="../assets/transform/tranformationlv11.gif" ms={5000} /> */}
     </>)
 
 

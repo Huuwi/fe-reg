@@ -1,9 +1,10 @@
 import HeaderDashBoard from "../../componet/HeaderDashBoard";
 import styles from "../../assets/css/DashBoard.module.css"
 import { useNavigate } from "react-router-dom";
-function DashBoard({ userData }) {
+function DashBoard() {
     let navigate = useNavigate()
-
+    let jsonData = localStorage.getItem("userData")
+    let userData = JSON.parse(jsonData)
 
     function handleClickLogOut() {
         localStorage.removeItem("userData");
@@ -23,7 +24,7 @@ function DashBoard({ userData }) {
     return (
         <>
             <HeaderDashBoard
-                userData={userData}
+                userData={userData || {}}
             />
             <div className={styles.content} >
                 <div className={styles.wrapper}>

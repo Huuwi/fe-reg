@@ -22,7 +22,6 @@ function PaymentSuccess() {
         // Kiểm tra điều kiện
         if (!transId || !username) {
             console.log("this");
-
             localStorage.removeItem("userData");
             localStorage.removeItem("rt");
             alert("Có lỗi trong quá trình xác nhận thanh toán!");
@@ -52,10 +51,19 @@ function PaymentSuccess() {
 
                 let response = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/checkPayMent", { edt }, { withCredentials: true })
                 let data = response.data
+                localStorage.removeItem("userData");
+                localStorage.setItem("userData", JSON.stringify(data.userData))
+
                 let { newLv, upLv } = data
                 if (!upLv) {
                     navigate('/dashBoard')
+                    return
                 }
+                inforLvUp.current = gifTranforms.find((e) => {
+                    return e.lv == newLv
+                })
+                setLvUp(upLv)
+                return
 
 
 
@@ -75,7 +83,7 @@ function PaymentSuccess() {
 
     return (
         <>
-            {lvUp ? <FullScreenGif /> : <SkeletonLoader />}
+            {lvUp ? <FullScreenGif ms={inforLvUp.current.ms} gifUrl={inforLvUp.current.url} /> : <SkeletonLoader />}
         </>
     )
 }
