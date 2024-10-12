@@ -1,0 +1,60 @@
+.fullscreen-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Màu nền mờ */
+    z-index: 9999;
+    /* Đảm bảo nó luôn ở trên cùng */
+    transition: opacity 1s ease-in-out;
+    /* Hiệu ứng mờ dần */
+    opacity: 0;
+}
+
+.fullscreen-gif.visible {
+    opacity: 1;
+    /* Khi GIF hiển thị, độ mờ là 1 */
+}
+
+.fullscreen-gif.hidden {
+    opacity: 0;
+    /* Khi GIF ẩn, độ mờ là 0 */
+    pointer-events: none;
+    /* Đảm bảo không thể tương tác khi GIF đã biến mất */
+}
+
+.fullscreen-gif img {
+    width: 90vw;
+    /* Chiều rộng chiếm 90% viewport width */
+    height: 90vh;
+    /* Chiều cao chiếm 90% viewport height */
+    /* object-fit: contain; */
+    /* Đảm bảo ảnh không bị méo, giữ tỉ lệ */
+}
+
+/* Hiệu ứng chớp */
+.fullscreen-gif.flashing {
+    animation: flash 0.3s ease-in-out;
+    /* Chớp 1 lần trong 0.3s */
+}
+
+@keyframes flash {
+
+    0%,
+    100% {
+        background-color: rgba(0, 0, 0, 0.8);
+        /* Nền bình thường */
+        opacity: 1;
+    }
+
+    50% {
+        background-color: rgba(255, 255, 255, 1);
+        /* Nền sáng chớp */
+        opacity: 0.5;
+    }
+}

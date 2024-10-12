@@ -16,15 +16,15 @@ function HeaderDashBoard(props) {
     let arrValue = [
         { toTal: 0, curBonus: 0, text: "lên lv3 bạn sẽ được bonus giá trị thẻ nạp" },
         { toTal: 50, curBonus: 0, text: "lên lv3 bạn sẽ được bonus giá trị thẻ nạp" },
-        { toTal: 80, curBonus: 0, text: "lên lv3 bạn sẽ được bonus giá trị thẻ nạp" },
+        { toTal: 80, curBonus: 0, text: "lên lv kế tiếp (lv3) bạn sẽ được bonus 10% giá trị thẻ nạp" },
         { toTal: 100, curBonus: .1, text: "lên lv kế tiếp (lv4) bạn sẽ được bonus 15% giá trị thẻ nạp" },
         { toTal: 130, curBonus: .15, text: "lên lv kế tiếp (lv5) bạn sẽ được bonus 20% giá trị thẻ nạp" },
         { toTal: 160, curBonus: .2, text: "lên lv kế tiếp (lv6) bạn sẽ được bonus 25% giá trị thẻ nạp" },
         { toTal: 200, curBonus: .25, text: "lên lv kế tiếp (lv7) bạn sẽ được bonus 30% giá trị thẻ nạp" },
         { toTal: 250, curBonus: .30, text: "lên lv kế tiếp (lv8) bạn sẽ được bonus 35% giá trị thẻ nạp" },
-        { toTal: 300, curBonus: .35, text: "lên lv kế tiếp (lv9) bạn sẽ được bonus 40% giá trị thẻ nạp" },
-        { toTal: 350, curBonus: .4, text: "lên lv kế tiếp (lv10) bạn sẽ được bonus 45% giá trị thẻ nạp" },
-        { toTal: 500, curBonus: .45, text: "lên lv kế tiếp (lv11) bạn sẽ được bonus 50% giá trị thẻ nạp" },
+        { toTal: 350, curBonus: .35, text: "lên lv kế tiếp (lv9) bạn sẽ được bonus 40% giá trị thẻ nạp" },
+        { toTal: 450, curBonus: .4, text: "lên lv kế tiếp (lv10) bạn sẽ được bonus 45% giá trị thẻ nạp" },
+        { toTal: 600, curBonus: .45, text: "lên lv kế tiếp (lv11) bạn sẽ được bonus 50% giá trị thẻ nạp" },
         { toTal: 1000, curBonus: .50, text: "lên lv kế tiếp (lv12) bạn sẽ được bonus 100% giá trị thẻ nạp" },
         { toTal: 151010, curBonus: 1, text: "lên lv kế tiếp (lv13) bạn sẽ được quy đổi số dư ra tiền mặt" }
     ]

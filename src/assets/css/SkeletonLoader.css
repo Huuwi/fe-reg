@@ -1,0 +1,76 @@
+.skeleton-loader {
+    position: fixed;
+    /* Để component luôn nằm trên cùng */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Canh giữa theo chiều dọc */
+    align-items: center;
+    /* Canh giữa theo chiều ngang */
+    z-index: 9999;
+    /* Đảm bảo ở trên cùng */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Lớp overlay màu đen trong suốt */
+    z-index: 1;
+    /* Để overlay nằm dưới loader */
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    /* Màu nền của vòng tròn */
+    border-top: 8px solid #3498db;
+    /* Màu của vòng tròn quay */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    /* Hiệu ứng quay */
+    z-index: 2;
+    /* Để loader nằm trên overlay */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.skeleton-item {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+    margin: 10px 0;
+    /* Khoảng cách giữa các item */
+    z-index: 2;
+    /* Để skeleton nằm trên overlay */
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #e0e0e0;
+    }
+
+    50% {
+        background-color: #c0c0c0;
+    }
+
+    100% {
+        background-color: #e0e0e0;
+    }
+}

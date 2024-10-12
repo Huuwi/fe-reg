@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Background with Overlay</title>
+    <style>
+        /* CSS cho phần tử background */
+        #gif-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            /* width: 100vw;
+            height: 100vh; */
+            background: url('https://steamuserimages-a.akamaihd.net/ugc/158032285454514923/B05DF7EF4BEA6A6E001D7432949D67E73EE4B04E/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false') no-repeat center center;
+            background-size: auto;
+            z-index: -1;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            min-width: 70vw;
+            min-height: 50vh;
+        }
+
+        /* Lớp phủ màu */
+        #gif-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            /* Màu đen với độ trong suốt 30% */
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="gif-background"></div>
+
+    <script>
+        // Thời gian của GIF (dễ dàng thay đổi theo thời gian của GIF thực tế)
+        const gifDuration = 8000; // Thời gian GIF chạy (5 giây = 5000ms)
+
+        // Chạy sau khi trang được tải
+        window.onload = function () {
+            // Sau khi GIF chạy xong, làm ẩn GIF
+            setTimeout(() => {
+                document.getElementById('gif-background').style.opacity = '0';
+            }, gifDuration);
+        };
+    </script>
+
+</body>
+
+</html>
