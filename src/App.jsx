@@ -6,9 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import DashBoard from "./pages/auth/DashBoard.jsx";
-import RegModule from "./pages/auth/RegModule.jsx";
+import PingHaui from "./pages/auth/PingHaui.jsx";
 import DashBoardRecharge from "./pages/auth/DashBoardRecharge.jsx";
 import PaymentSuccess from "./pages/auth/PaymentSuccess.jsx";
+import LoginHaui from "./pages/auth/LoginHaui.jsx";
 
 import ERSA from "./helper/ERSA.js"
 import sha256 from "./helper/ESHA256.js";
@@ -74,9 +75,10 @@ function App() {
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/dashBoard" element={<DashBoard />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/regModule" element={<RegModule userData={userData} />} />
+        <Route path="/PingHaui" element={<PingHaui userData={userData} />} />
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />
         <Route path="/paymentSuccess" element={<PaymentSuccess />} />
+        <Route path="/loginHaui" element={<LoginHaui />} />
       </Routes>
     </>
   );

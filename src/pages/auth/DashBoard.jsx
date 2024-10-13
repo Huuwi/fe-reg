@@ -13,7 +13,7 @@ function DashBoard() {
     }
 
     function handleClickRegMoudle() {
-        navigate("/regModule")
+        navigate("/PingHaui")
     }
     function handleClickDashBoardRecharge() {
         navigate("/dashBoardRecharge")
