@@ -1,41 +1,59 @@
 import React, { useState } from 'react';
-import '../../assets/css/LoginHaui.css'; // Đảm bảo bạn tạo tệp này
+import styles from '../../assets/css/LoginHaui.module.css'; // Import CSS module
 import axios from 'axios';
 
 const LoginHaui = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-
-        let data = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/loginHaui", { userNameHaui: username, passWordHaui: password }, { withCredentials: true })
-
-        console.log(data);
-
-
-
+        try {
+            const data = await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/auth/loginHaui`,
+                { userNameHaui: username, passWordHaui: password },
+                { withCredentials: true }
+            );
+            localStorage.setItem('nameHaui', data?.data?.nameHaui);
+        } catch (error) {
+            alert('Tài khoản hoặc mật khẩu chưa chính xác');
+        }
     };
 
     return (
-        <div >
-            <div className="login-container">
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <h2>Đăng Nhập</h2>
-                    <div className="input-group">
-                        <label htmlFor="username">Mã Sinh Viên</label>
+        <div className={styles.loginWrapper}>
+            <div
+                className={`${styles.loginContainer} ${isHovered ? styles.loginContainerHover : ''
+                    }`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <form className={styles.loginForm} onSubmit={handleSubmit}>
+                    <h2 className={styles.loginFormTitle}>Đăng Nhập (HAUI)</h2>
+
+                    <div className={styles.inputGroup}>
+                        <label className={styles.inputLabel} htmlFor="username">
+                            Mã Sinh Viên
+                        </label>
                         <input
                             type="text"
                             id="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Nhập mã sinh viên(Tài Khoản HAUI)"
+                            placeholder="Nhập mã sinh viên (Tài Khoản HAUI)"
                             required
+                            className={styles.inputField}
+                            onFocus={(e) => e.target.classList.add(styles.inputFieldFocus)}
+                            onBlur={(e) => e.target.classList.remove(styles.inputFieldFocus)}
                         />
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Mật Khẩu</label>
+
+                    <div className={styles.inputGroup}>
+                        <label className={styles.inputLabel} htmlFor="password">
+                            Mật Khẩu
+                        </label>
                         <input
                             type="password"
                             id="password"
@@ -43,12 +61,22 @@ const LoginHaui = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Nhập mật khẩu (Mật Khẩu HAUI)"
                             required
+                            className={styles.inputField}
+                            onFocus={(e) => e.target.classList.add(styles.inputFieldFocus)}
+                            onBlur={(e) => e.target.classList.remove(styles.inputFieldFocus)}
                         />
                     </div>
-                    <button type="submit">Đăng Nhập</button>
+
+                    <button
+                        type="submit"
+                        className={styles.submitButton}
+                        onMouseEnter={(e) => e.target.classList.add(styles.submitButtonHover)}
+                        onMouseLeave={(e) => e.target.classList.remove(styles.submitButtonHover)}
+                    >
+                        Đăng Nhập
+                    </button>
                 </form>
             </div>
-
         </div>
     );
 };

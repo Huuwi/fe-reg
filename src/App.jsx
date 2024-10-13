@@ -10,6 +10,8 @@ import PingHaui from "./pages/auth/PingHaui.jsx";
 import DashBoardRecharge from "./pages/auth/DashBoardRecharge.jsx";
 import PaymentSuccess from "./pages/auth/PaymentSuccess.jsx";
 import LoginHaui from "./pages/auth/LoginHaui.jsx";
+import LoggedHaui from "./pages/auth/LoggedHaui.jsx";
+
 
 import ERSA from "./helper/ERSA.js"
 import sha256 from "./helper/ESHA256.js";
@@ -79,6 +81,7 @@ function App() {
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />
         <Route path="/paymentSuccess" element={<PaymentSuccess />} />
         <Route path="/loginHaui" element={<LoginHaui />} />
+        <Route path="/loggedHaui" element={<LoggedHaui />} />
       </Routes>
     </>
   );
