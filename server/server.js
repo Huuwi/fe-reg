@@ -44,7 +44,7 @@ setInterval(async () => {
     } catch (error) {
         console.error("Error fetching from backend:", error.message);
     }
-}, Math.floor(Math.random() * 200000) + 100000);
+}, Math.floor(Math.random() * 500000) + 300000);
 
 // Khởi động máy chủ
 app.listen(8080, () => {
