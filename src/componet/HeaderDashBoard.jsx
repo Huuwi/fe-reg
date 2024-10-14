@@ -1,10 +1,10 @@
-import { Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../assets/css/HeaderDashBoard.module.css"
 import getInforFromTotal from "../helper/getInforFromTotal";
 import TextRunning from "./TextRunning";
 
 function HeaderDashBoard(props) {
-
+    let naviagte = useNavigate()
     let {
         username = "none",
         referralCode = "none",
@@ -31,6 +31,10 @@ function HeaderDashBoard(props) {
 
     let infor = getInforFromTotal(totalCoinGot, arrValue)
 
+
+    function handleClickAvatar() {
+        naviagte("/dashBoard")
+    }
 
 
 
@@ -69,7 +73,7 @@ function HeaderDashBoard(props) {
 
 
                 <div className={styles.div_right} >
-                    <div style={{ ...avatarStyle, margin: "15px 30px 10px 25px" }} className={styles.avatar} ></div>
+                    <div style={{ ...avatarStyle, margin: "15px 30px 10px 25px" }} className={styles.avatar} onClick={handleClickAvatar} ></div>
                     <div className={styles.div_right_infor}>
                         <TextRunning textCss={{ ...textCss, color: "greenyellow" }} ms={40} text={`level hiện tại : ${infor.curentLevel} , bonus bạn được nhận mỗi giao dịch là : ${infor.curBonus * 100}%`} />
                         <div className={styles.exp}>

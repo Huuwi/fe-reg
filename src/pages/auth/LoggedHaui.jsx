@@ -15,6 +15,8 @@ function LoggedHaui() {
     let nameHaui = localStorage.getItem("nameHaui") || "none";
     let moduleData = useRef([]);
 
+
+
     const toggleVisibility = () => {
         setIsVisible(window.scrollY > 300);
     };
@@ -55,10 +57,9 @@ function LoggedHaui() {
 
         fetchData();
 
-        // Thêm sự kiện cuộn
+
         window.addEventListener('scroll', toggleVisibility);
 
-        // Hủy bỏ sự kiện cuộn khi component unmount
         return () => {
             window.removeEventListener('scroll', toggleVisibility);
         };
@@ -72,14 +73,15 @@ function LoggedHaui() {
                 <div className={styles.wrapperLoggedHaui}>
                     <div className={styles.bodyLoggedHaui}>
                         <HeaderDashBoard userData={userData} />
-                        <h2>Account Haui: {nameHaui}</h2>
+                        <h1 style={{ color: "blue" }} >Account Haui: {nameHaui}</h1>
                         <div className={styles.divBtn}>
-                            <button className={styles.btn}>Đăng ký học phần</button>
+                            <button className={styles.btn} onClick={() => { navigate("/registerModule") }} >Đăng ký học phần</button>
                             <button className={styles.btn}>Quét học phần mới (nếu có)</button>
                         </div>
+                        <button className={styles.btn} onClick={() => { navigate("/loginHaui") }} >Đăng nhập acc sinh viên khác</button>
                         <h2 style={{ margin: "10px" }}>Mỗi lần quét học phần sẽ mất 3 xu</h2>
-                        <h2 style={{ margin: "10px" }}>Copy id học phần muốn đăng ký trong bảng môn học!</h2>
-                        <h2 style={{ margin: "10px" }}>Bảng học phần``:</h2>
+                        <h2 style={{ margin: "10px", color: "red" }}>Copy id học phần muốn đăng ký !!</h2>
+                        <h2 style={{ margin: "10px" }}>Bảng học phần:</h2>
                         <ModuleTable moduleData={moduleData.current} />
                     </div>
 

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import DashBoard from "./pages/auth/DashBoard.jsx";
 import PingHaui from "./pages/auth/PingHaui.jsx";
@@ -11,6 +10,7 @@ import DashBoardRecharge from "./pages/auth/DashBoardRecharge.jsx";
 import PaymentSuccess from "./pages/auth/PaymentSuccess.jsx";
 import LoginHaui from "./pages/auth/LoginHaui.jsx";
 import LoggedHaui from "./pages/auth/LoggedHaui.jsx";
+import RegisterModuleHaui from "./pages/auth/RegisterModulePage.jsx";
 
 
 import ERSA from "./helper/ERSA.js"
@@ -82,6 +82,7 @@ function App() {
         <Route path="/paymentSuccess" element={<PaymentSuccess />} />
         <Route path="/loginHaui" element={<LoginHaui />} />
         <Route path="/loggedHaui" element={<LoggedHaui />} />
+        <Route path="/registerModule" element={<RegisterModuleHaui />} />
       </Routes>
     </>
   );
