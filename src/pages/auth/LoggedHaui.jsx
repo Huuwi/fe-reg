@@ -4,7 +4,7 @@ import SkeletonLoader from "../../componet/SkeletonLoader";
 import axios from "axios";
 import HeaderDashBoard from "../../componet/HeaderDashBoard";
 import styles from "../../assets/css/LoggedHaui.module.css";
-import ModuleTable from "../../componet/moduleTable";
+import ModuleTable from "../../componet/moduleTable.jsx";
 
 function LoggedHaui() {
     let navigate = useNavigate();
