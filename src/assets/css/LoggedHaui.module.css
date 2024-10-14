@@ -1,0 +1,57 @@
+.wrapperLoggedHaui {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(235, 161, 173, .5);
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.bodyLoggedHaui {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.divBtn {
+
+    margin: 10px;
+    display: flex;
+
+}
+
+.btn {
+    min-width: 400px;
+    margin: 5px;
+}
+
+.scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    /* Cách dưới 20px */
+    right: 20px;
+    /* Cách bên phải 20px */
+    background-color: #4CAF50;
+    /* Màu nền */
+    color: white;
+    /* Màu chữ */
+    border: none;
+    /* Không đường biên */
+    border-radius: 5px;
+    /* Bo góc */
+    padding: 10px 15px;
+    /* Padding cho nút */
+    cursor: pointer;
+    /* Con trỏ khi hover */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển màu */
+    z-index: 1000;
+    /* Đảm bảo nút nằm trên cùng */
+}
+
+.scrollToTop:hover {
+    background-color: #45a049;
+    /* Màu nền khi hover */
+}

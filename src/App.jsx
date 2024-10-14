@@ -76,7 +76,7 @@ function App() {
       <Routes>
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/dashBoard" element={<DashBoard />} />
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<DashBoard />} />
         <Route path="/PingHaui" element={<PingHaui userData={userData} />} />
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />
         <Route path="/paymentSuccess" element={<PaymentSuccess />} />

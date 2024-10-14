@@ -1,0 +1,62 @@
+.tableContainer {
+    overflow-x: auto;
+    /* Cho phép cuộn ngang trên thiết bị nhỏ */
+    margin: 20px;
+    border-radius: 8px;
+    /* Bo góc cho container */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(239, 135, 152);
+    /* Đổ bóng cho container */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Kết hợp các đường biên lại với nhau */
+    margin: 10px 0;
+    /* Khoảng cách trên và dưới bảng */
+    font-family: 'Arial', sans-serif;
+    /* Font chữ cho bảng */
+}
+
+.table th,
+.table td {
+    border: 1px solid #e0e0e0;
+    /* Đường biên cho ô */
+    padding: 15px;
+    /* Khoảng cách trong ô */
+    text-align: left;
+    /* Căn trái nội dung */
+}
+
+.table th {
+    background-color: #4CAF50;
+    /* Màu nền cho tiêu đề */
+    color: white;
+    /* Màu chữ cho tiêu đề */
+    font-weight: bold;
+    /* Chữ đậm */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Màu nền cho hàng chẵn */
+}
+
+.table tr:hover {
+    background-color: #5ccc43;
+    /* Màu nền khi di chuột qua hàng */
+    cursor: pointer;
+    /* Hiển thị con trỏ khi di chuột */
+}
+
+@media (max-width: 600px) {
+
+    .table th,
+    .table td {
+        font-size: 14px;
+        /* Giảm kích thước chữ trên thiết bị nhỏ */
+        padding: 10px;
+        /* Giảm padding cho thiết bị nhỏ */
+    }
+}

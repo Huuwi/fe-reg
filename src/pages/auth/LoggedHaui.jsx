@@ -1,27 +1,97 @@
-import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import SkeletonLoader from "../../componet/SkeletonLoader"
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import SkeletonLoader from "../../componet/SkeletonLoader";
+import axios from "axios";
+import HeaderDashBoard from "../../componet/HeaderDashBoard";
+import styles from "../../assets/css/LoggedHaui.module.css";
+import ModuleTable from "../../componet/moduleTable";
 
 function LoggedHaui() {
+    let navigate = useNavigate();
+    const [isLogged, setIsLogged] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    let jsonData = localStorage.getItem("userData");
+    let userData = JSON.parse(jsonData);
+    let nameHaui = localStorage.getItem("nameHaui") || "none";
+    let moduleData = useRef([]);
 
-    let navigate = useNavigate()
-    let [isLogged, setIsLogged] = useState(false)
+    const toggleVisibility = () => {
+        setIsVisible(window.scrollY > 300);
+    };
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const ping = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/pingHaui", {}, { withCredentials: true });
+                nameHaui = ping.data.nameHaui;
+                localStorage.setItem("nameHaui", nameHaui);
 
+                try {
+                    moduleData.current = JSON.parse(localStorage.getItem("module")) || [];
+                } catch (error) {
+                    console.log(error);
+                }
+
+                if (moduleData.current.length <= 10) {
+                    const response = await axios.get("/module.txt");
+                    moduleData.current = response.data;
+                }
+
+                setIsLogged(true);
+            } catch (error) {
+                localStorage.removeItem("nameHaui");
+                console.log(error);
+                alert("Phiên đăng nhập HAUI của bạn đã hết hạn!!");
+                navigate("/loginHaui");
+            }
+        };
+
+        fetchData();
+
+        // Thêm sự kiện cuộn
+        window.addEventListener('scroll', toggleVisibility);
+
+        // Hủy bỏ sự kiện cuộn khi component unmount
+        return () => {
+            window.removeEventListener('scroll', toggleVisibility);
+        };
+    }, [navigate]);
 
     return (
         <>
+            {!isLogged ? (
+                <SkeletonLoader />
+            ) : (
+                <div className={styles.wrapperLoggedHaui}>
+                    <div className={styles.bodyLoggedHaui}>
+                        <HeaderDashBoard userData={userData} />
+                        <h2>Account Haui: {nameHaui}</h2>
+                        <div className={styles.divBtn}>
+                            <button className={styles.btn}>Đăng ký học phần</button>
+                            <button className={styles.btn}>Quét học phần mới (nếu có)</button>
+                        </div>
+                        <h2 style={{ margin: "10px" }}>Mỗi lần quét học phần sẽ mất 3 xu</h2>
+                        <h2 style={{ margin: "10px" }}>Copy id học phần muốn đăng ký trong bảng môn học!</h2>
+                        <h2 style={{ margin: "10px" }}>Bảng học phần``:</h2>
+                        <ModuleTable moduleData={moduleData.current} />
+                    </div>
 
-            {!isLogged ? <SkeletonLoader /> : <SkeletonLoader />}
-
+                    {isVisible && (
+                        <button className={styles.scrollToTop} onClick={scrollToTop}>
+                            Lên đầu trang
+                        </button>
+                    )}
+                </div>
+            )}
         </>
-    )
-
-
-
+    );
 }
 
-
-export default LoggedHaui
-
+export default LoggedHaui;

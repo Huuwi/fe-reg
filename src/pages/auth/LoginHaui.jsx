@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import styles from '../../assets/css/LoginHaui.module.css'; // Import CSS module
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 
+
 const LoginHaui = () => {
+    let navigate = useNavigate()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isHovered, setIsHovered] = useState(false);
@@ -17,6 +21,8 @@ const LoginHaui = () => {
                 { withCredentials: true }
             );
             localStorage.setItem('nameHaui', data?.data?.nameHaui);
+            navigate("/loggedHaui")
+
         } catch (error) {
             alert('Tài khoản hoặc mật khẩu chưa chính xác');
         }

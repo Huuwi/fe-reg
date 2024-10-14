@@ -5,6 +5,7 @@
     display: flex;
     margin-top: 15px;
     flex-direction: row;
+    width: 100vw;
     /* Xếp theo hàng khi màn hình lớn */
 }
 

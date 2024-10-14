@@ -1,8 +1,8 @@
 .wrapper {
     height: auto;
-    /* max-height: 73vh; */
     min-width: 300px;
     min-height: 400px;
+    /* height: 100vh; */
     background-image: url("../images/backGroundDashBoradRechage.png");
     background-size: cover;
     background-position: center;
@@ -13,6 +13,7 @@
     align-items: center;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100vw;
 }
 
 .costType {
