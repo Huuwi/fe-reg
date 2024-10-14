@@ -67,7 +67,7 @@ const ClassSelection = () => {
 
                     <tbody>
 
-                        {dataClasses && dataClasses.map((cls, index) => (
+                        {dataClasses?.length > 10 ? dataClasses.map((cls, index) => (
                             <tr key={index}>
                                 <td>{cls?.ModulesName || "chưa có dữ liệu"}</td>
                                 <td>{getTeacherName(cls?.GiaoVien)}</td>
@@ -77,7 +77,7 @@ const ClassSelection = () => {
                                 <td>{cls?.BranchName || "chưa có dữ liệu"}</td>
                                 <td>{cls?.IndependentClassID || "chưa có dữ liệu"}</td>
                             </tr>
-                        ))}
+                        )) : console.log("không có dữ liệu trả về")}
 
                     </tbody>
                 </table>
