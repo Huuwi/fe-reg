@@ -11,6 +11,8 @@ import PaymentSuccess from "./pages/auth/PaymentSuccess.jsx";
 import LoginHaui from "./pages/auth/LoginHaui.jsx";
 import LoggedHaui from "./pages/auth/LoggedHaui.jsx";
 import RegisterModuleHaui from "./pages/auth/RegisterModulePage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
+
 
 
 import ERSA from "./helper/ERSA.js"
@@ -28,20 +30,32 @@ function App() {
     let jsonData = localStorage.getItem("userData");
     let rt = localStorage.getItem("rt");
 
-    if (jsonData && rt) {
-      setUserData(JSON.parse(jsonData));
-      if (location.pathname == "/") {
-        navigate('/dashBoard')
-      }
+    // if (jsonData && rt) {
+    //   setUserData(JSON.parse(jsonData));
+    //   if (location.pathname == "/") {
+    //     navigate('/dashBoard')
+    //   }
 
-      navigate(location.pathname);  // Điều hướng lại trang hiện tại
-      return;
-    }
+    //   navigate(location.pathname);  // Điều hướng lại trang hiện tại
+    //   return;
+    // }
 
-    if (rt) {
+    if (rt || !rt) {
       document.cookie = `rt=${rt}`;
 
       async function fetchData() {
+
+        try {
+          let response0 = await axios.get(`${url}/auth/getInforUser`, { withCredentials: true });
+          setUserData(response0.data?.userData);
+          localStorage.setItem("userData", JSON.stringify(response0.data?.userData));
+          navigate(location.pathname)
+          return
+        } catch (error) {
+          console.log(error);
+        }
+
+
         try {
           let rdn = Date.now() + Math.random();
           let verifyCode = await sha256(rdn + "9ea41530dc5940d2d81f862fd5ecc7b75018d213f792782473fc30658859263e");
@@ -69,13 +83,14 @@ function App() {
     } else {
       navigate("/loginPage");
     }
-  }, [navigate, location.pathname]);  // Thêm dependency `location.pathname` để điều hướng đúng trang hiện tại
+  }, []);  // Thêm dependency `location.pathname` để điều hướng đúng trang hiện tại
 
   return (
     <>
       <Routes>
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/dashBoard" element={<DashBoard />} />
+        <Route path="registerPage" element={<RegisterPage />} />
         <Route path="/" element={<DashBoard />} />
         <Route path="/PingHaui" element={<PingHaui userData={userData} />} />
         <Route path="/dashBoardRecharge" element={<DashBoardRecharge userData={userData} />} />

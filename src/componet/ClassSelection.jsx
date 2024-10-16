@@ -1,41 +1,79 @@
 import React, { useState } from 'react';
 import styles from '../assets/css/ClassSelection.module.css'; // Import CSS module
+import axios from 'axios';
 
 const ClassSelection = () => {
-    const [classId, setClassId] = useState('');
+    const [ModuleId, setModuleId] = useState('');
     const [registeredId, setRegisteredId] = useState('');
 
     let [dataClasses, setDataClasses] = useState({})
 
 
-    const handleClassIdChange = (e) => setClassId(e.target.value);
+    const handleModuleIdChange = (e) => setModuleId(e.target.value);
     const handleRegisteredIdChange = (e) => setRegisteredId(e.target.value);
 
-    const handleConfirm = () => {
-        alert(`Xác nhận mã lớp: ${classId}`);
+    const handleConfirm = async () => {
+        try {
+            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/getInforClass", { id: ModuleId }, { withCredentials: true })
+            let data = respone.data
+            if (!data?.length) {
+                setDataClasses([{}])
+                return
+            }
+            setDataClasses(data?.result?.data)
+        } catch (error) {
+            console.log(error);
+            alert("có lỗi trong quá trình tìm thông tin các lớp học phần");
+            return
+        }
     };
 
-    const handleRegister = () => {
-        alert(`Đăng ký lớp với mã: ${registeredId}`);
+    const handleRegister = async () => {
+        try {
+            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId }, { withCredentials: true })
+            let data = respone.data
+            alert(data.result.Message)
+            // console.log(data);
+
+
+        } catch (error) {
+            console.log(error);
+            alert("có lỗi trong quá trình đăng ký lớp học");
+            return
+        }
     };
 
 
     const getDays = (listDate) => {
+        if (!listDate) {
+            return null
+        }
+        console.log("listDate : ", listDate);
+
+
         const days = new Set(JSON.parse(listDate).map((e) => e.DayStudy));
         return Array.from(days).map((day) => `Thứ ${day}`).join(' ');
     };
 
     // Hàm để lấy danh sách tiết học
     const getTimes = (listDate) => {
+        if (!listDate) {
+            return null
+        }
         const times = new Set(JSON.parse(listDate).map((e) => e.StudyTime));
         return Array.from(times).map((time) => `Tiết ${time}`).join(' ');
     };
 
     // Hàm để lấy tên giáo viên
     const getTeacherName = (teacherData) => {
+        if (!teacherData) {
+            return null;
+        }
         const teachers = JSON.parse(teacherData);
-        return teachers[0] ? teachers[0].Fullname : 'Chưa có dữ liệu về giáo viên';
+        return teachers[0] ? teachers[0].Fullname : null;
     };
+
+
 
 
 
@@ -45,8 +83,8 @@ const ClassSelection = () => {
                 <input
                     type="text"
                     placeholder="Nhập id học phần vào đây để chọn mã lớp"
-                    value={classId}
-                    onChange={handleClassIdChange}
+                    value={ModuleId}
+                    onChange={handleModuleIdChange}
                     className={styles.input}
                 />
                 <button onClick={handleConfirm} className={styles.button}>
@@ -67,15 +105,15 @@ const ClassSelection = () => {
 
                     <tbody>
 
-                        {dataClasses?.length > 10 ? dataClasses.map((cls, index) => (
+                        {dataClasses?.length > 0 ? dataClasses.map((cls, index) => (
                             <tr key={index}>
                                 <td>{cls?.ModulesName || "chưa có dữ liệu"}</td>
-                                <td>{getTeacherName(cls?.GiaoVien)}</td>
-                                <td>{getDays(cls?.ListDate)}</td>
-                                <td>{getTimes(cls?.ListDate)}</td>
-                                <td>{`${cls?.CountS || "chưa có dữ liệu"}/${cls?.MaxStudent}`}</td>
+                                <td>{getTeacherName(cls?.GiaoVien) || "chưa có dữ liệu"}</td>
+                                <td>{getDays(cls?.ListDate) || "chưa có dữ liệu"}</td>
+                                <td>{getTimes(cls?.ListDate) || "chưa có dữ liệu"}</td>
+                                <td>{`${cls?.CountS || "chưa có dữ liệu"}/${cls?.MaxStudent || "chưa có dữ liệu"}`}</td>
                                 <td>{cls?.BranchName || "chưa có dữ liệu"}</td>
-                                <td>{cls?.IndependentClassID || "chưa có dữ liệu"}</td>
+                                <td>{cls?.IndependentClassId || "chưa có dữ liệu"}</td>
                             </tr>
                         )) : console.log("không có dữ liệu trả về")}
 

@@ -53,7 +53,7 @@ function LoginPage() {
                     <button className={styles.btn_login} onClick={handleClickLogin} ><span className={styles.btn_span}>đăng nhập</span></button>
                     <div className={styles.div_reg} >
                         <span className={styles.div_reg_span} >chưa có tài khoản?</span>
-                        <Link to="#" className={styles.div_reg_link}>đăng ký</Link>
+                        <span onClick={() => { navigate("/registerPage") }} className={styles.div_reg_link} style={{ textDecoration: "true", fontSize: "15px" }}  >đăng ký</span>
                     </div>
                     <span className={styles.errorSpan}>{error}</span>
                     <h3 className={styles.notification} >chú ý !! tài khoản và mật khẩu không chứa các ký tự đặc biệt , chỉ chứa các ký tự từ 0-9,a-z,A-Z</h3>
