@@ -3,6 +3,10 @@ import CostTable from "../../componet/CostTable"
 
 function DashBoardRecharge(props) {
 
+    let jsonData = localStorage.getItem("userData")
+    let userData = JSON.parse(jsonData)
+
+
     let costTable = [
         { id: 0, amount: 10, salesReferral: 0 },
         { id: 1, amount: 20, salesReferral: 0.1 },
@@ -16,7 +20,7 @@ function DashBoardRecharge(props) {
 
     return (
         <>
-            <HeaderDashBoard userData={props.userData} />
+            <HeaderDashBoard userData={userData || {}} />
             <CostTable costTable={costTable} />
         </>
     )
