@@ -5,13 +5,16 @@ import TextRunning from "./TextRunning";
 
 function HeaderDashBoard(props) {
     let naviagte = useNavigate()
+    let jsonData = localStorage.getItem("userData")
+    let userData = JSON.parse(jsonData)
     let {
         username = "none",
         referralCode = "none",
         userId = "none",
         balance = "none",
         totalCoinGot = "none",
-    } = props.userData;
+    } = userData;
+
 
     let arrValue = [
         { toTal: 0, curBonus: 0, text: "lên lv3 bạn sẽ được bonus giá trị thẻ nạp" },
