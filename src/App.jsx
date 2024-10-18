@@ -65,7 +65,7 @@ function App() {
     }
 
     fetchData();
-  }, [navigate, location.pathname]);  // Thêm dependency `location.pathname` để điều hướng đúng trang hiện tại
+  }, []);
 
   return (
     <>
