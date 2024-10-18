@@ -1,6 +1,7 @@
 import HeaderDashBoard from "../../componet/HeaderDashBoard";
 import styles from "../../assets/css/DashBoard.module.css"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function DashBoard() {
 
@@ -9,11 +10,32 @@ function DashBoard() {
     let jsonData = localStorage.getItem("userData")
     let userData = JSON.parse(jsonData)
 
-    function handleClickLogOut() {
+    async function handleClickLogOut() {
         localStorage.removeItem("userData");
         localStorage.removeItem("rt")
+        try {
+            await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/logoutAccount", {}, { withCredentials: true })
+        } catch (error) {
+            alert("logout thất bại")
+            console.log(error);
+        }
+
         navigate("/loginPage")
     }
+
+    function handleCLickHistoryRegisted() {
+
+        navigate("/historyRegisted")
+
+    }
+
+
+    async function handleClickHistoryPayment() {
+
+        navigate("/historyPayment")
+
+    }
+
 
     function handleClickRegMoudle() {
         navigate("/PingHaui")
@@ -38,10 +60,13 @@ function DashBoard() {
                         <button className={styles.rechargeBtn} onClick={handleClickDashBoardRecharge}>nạp tiền 💎</button>
                         <button onClick={handleClickRegMoudle} > đăng ký học phần </button>
                         <button onClick={handleClickLogOut}> đăng xuất </button>
-                        <button onClick={handleClickLogOut}>lịch sử nạp tiền </button>
-                        <button onClick={handleClickLogOut}>lịch sử đăng ký HP </button>
+                        <button onClick={handleClickHistoryPayment}>lịch sử nạp tiền </button>
+                        <button onClick={handleCLickHistoryRegisted}>lịch sử đăng ký HP </button>
                         <button onClick={handleClickLogOut}> liên hệ admin </button>
                     </div>
+                    <h2 style={{ color: "red", backgroundColor: "white", margin: "10px" }}>Ae có thể xem hướng dẫn sử dụng website trên youtube tại đây : </h2>
+                    <h2 style={{ color: "red", backgroundColor: "white", margin: "10px" }}> <a href="https://www.youtube.com/watch?v=lGIiLFzl0pQ" style={{ color: "green" }} target="_blank">video hướng dẫn 1 : (hướng dẫn nạp tiền dùng mã giới thiệu)</a></h2>
+                    <h2 style={{ color: "red", backgroundColor: "white" }}> <a href="https://www.youtube.com/watch?v=lGIiLFzl0pQ" style={{ color: "green" }} target="_blank">video hướng dẫn 2 : (hướng dẫn chức năng đăng ký học phần , refund tiền nếu đăng ký không thành công) </a></h2>
                 </div>
             </div>
         </>

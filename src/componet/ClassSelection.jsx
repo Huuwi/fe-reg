@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const ClassSelection = () => {
     let navigate = useNavigate()
     const [ModuleId, setModuleId] = useState('');
+    let [userModuleId, setUserModuleId] = useState('')
     const [registeredId, setRegisteredId] = useState('');
 
     let [dataClasses, setDataClasses] = useState({})
 
-
+    const handleUserModuleIdChange = (e) => setUserModuleId(e.target.value);
     const handleModuleIdChange = (e) => setModuleId(e.target.value);
     const handleRegisteredIdChange = (e) => setRegisteredId(e.target.value);
 
@@ -32,7 +33,7 @@ const ClassSelection = () => {
 
     const handleRegister = async () => {
         try {
-            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId }, { withCredentials: true })
+            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId, moduleId: userModuleId }, { withCredentials: true })
             let data = respone.data
             localStorage.removeItem("userData")
             localStorage.setItem("userData", JSON.stringify(data.userData))
@@ -83,7 +84,8 @@ const ClassSelection = () => {
 
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{}}>
+            <h3 style={{ color: "red", fontSize: "21px" }} >Chú ý ! nếu không nhập id học phần hoặc nhập id học phần không khớp với mã lớp, hệ thống sẽ không thể refund xu !</h3>
             <div className={styles.section}>
                 <input
                     type="text"
@@ -128,6 +130,13 @@ const ClassSelection = () => {
 
             <div className={styles.section}>
                 <h3>Copy mã lớp muốn đăng ký</h3>
+                <input
+                    type="text"
+                    placeholder="Nhập id học phần vào đây"
+                    value={userModuleId}
+                    onChange={handleUserModuleIdChange}
+                    className={styles.input}
+                />
                 <input
                     type="text"
                     placeholder="Nhập mã lớp vào đây"

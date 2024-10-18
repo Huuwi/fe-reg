@@ -76,8 +76,8 @@ th {
     color: white;
     font-size: 16px;
     text-align: center;
-    border-bottom: 2px solid #ddd;
-    border-right: 1px solid #bbb;
+    border-bottom: 2px solid #0c0a0a;
+    border-right: 1px solid #0d0808;
 }
 
 th:last-child {
@@ -88,7 +88,7 @@ th:last-child {
 /* Row Styles */
 tr {
     transition: background-color 0.2s;
-    border-bottom: 1px solid #ccc;
+    border: 2px solid #232121;
 }
 
 tr:nth-child(even) {
@@ -104,14 +104,11 @@ td {
     padding: 12px;
     text-align: center;
     font-size: 15px;
-    border-right: 2px solid #bbb;
+    border-right: 2px solid #190f0f;
     border-bottom: 2px solid #302c2c;
 }
 
-td:last-child {
-    border-right: none;
-    /* Không có đường viền bên phải cho cột cuối */
-}
+/*  */
 
 /* Responsive Styles */
 @media (max-width: 768px) {

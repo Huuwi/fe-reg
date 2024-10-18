@@ -13,6 +13,7 @@ import LoggedHaui from "./pages/auth/LoggedHaui.jsx";
 import RegisterModuleHaui from "./pages/auth/RegisterModulePage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import HistoryPayment from "./pages/auth/HistoryPayment.jsx";
+import HistoryRegisted from "./pages/auth/HistoryRegisted.jsx";
 
 
 import ERSA from "./helper/ERSA.js"
@@ -56,10 +57,12 @@ function App() {
           navigate(location.pathname);  // Điều hướng lại trang hiện tại sau khi lấy dữ liệu user thành công
         } catch (error) {
           console.log(error?.response?.data?.message);
+          localStorage.removeItem("userData")
           navigate("/loginPage");
         }
       } catch (error) {
         console.log(error?.response?.data?.message);
+        localStorage.removeItem("userData")
         navigate("/loginPage");
       }
     }
@@ -81,6 +84,7 @@ function App() {
         <Route path="/loggedHaui" element={<LoggedHaui />} />
         <Route path="/registerModule" element={<RegisterModuleHaui />} />
         <Route path="/historyPayment" element={<HistoryPayment />} />
+        <Route path="/historyRegisted" element={<HistoryRegisted />} />
       </Routes>
     </>
   );
