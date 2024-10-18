@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles from '../assets/css/ClassSelection.module.css'; // Import CSS module
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ClassSelection = () => {
+    let navigate = useNavigate()
     const [ModuleId, setModuleId] = useState('');
     const [registeredId, setRegisteredId] = useState('');
 
@@ -32,6 +34,9 @@ const ClassSelection = () => {
         try {
             let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId }, { withCredentials: true })
             let data = respone.data
+            localStorage.removeItem("userData")
+            localStorage.setItem("userData", JSON.stringify(data.userData))
+            navigate("/registerModule")
             alert(data.result.Message)
             // console.log(data);
 

@@ -6,7 +6,14 @@ import TextRunning from "./TextRunning";
 function HeaderDashBoard(props) {
     let naviagte = useNavigate()
     let jsonData = localStorage.getItem("userData")
-    let userData = JSON.parse(jsonData)
+
+
+    let userData = {}
+    if (jsonData) {
+        userData = JSON.parse(jsonData)
+    }
+
+
     let {
         username = "none",
         referralCode = "none",
