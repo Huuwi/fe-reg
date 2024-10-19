@@ -47,6 +47,23 @@ function HistoryRegisted() {
             return
         }
 
+        let responeRefund
+        try {
+            responeRefund = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/refund", { studentCode, passWordHaui, id }, { withCredentials: true })
+
+        } catch (error) {
+            console.log(error.response.data.message);
+            alert(error.response.data.message)
+            return
+        }
+
+        let dataRefund = responeRefund.data;
+
+        console.log(dataRefund);
+
+        navigate("/")
+
+
 
     }
 
@@ -140,7 +157,7 @@ function HistoryRegisted() {
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "30px", backgroundColor: "#80808024", borderRadius: "10px", boxShadow: "3px 3px 3px black", margin: "10px" }}>
                                 <h3>Form thông tin hoàn xu</h3>
                                 <input type="text" style={{ minWidth: "400px" }} placeholder="Nhập mã sinh viên vào đây để refund" value={studentCode} onChange={handleOnChangeStudentCode} />
-                                <input type="text" style={{ minWidth: "400px" }} placeholder="Nhập mật khẩu sinh viên vào đây để refund" value={passWordHaui} onChange={handleOnChangePassWordHaui} />
+                                <input type="password" style={{ minWidth: "510px", minHeight: "39px", borderRadius: "10px", marginTop: "22px" }} placeholder="Nhập mật khẩu sinh viên vào đây để refund" value={passWordHaui} onChange={handleOnChangePassWordHaui} />
                                 <input type="text" style={{ minWidth: "400px" }} placeholder="Nhập id để refund" value={id} onChange={handleOnChangeId} />
                                 <button style={{ maxHeight: "60px", margin: "10px" }} onClick={handleClick} >  Xác nhận </button>
 
