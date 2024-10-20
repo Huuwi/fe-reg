@@ -28,6 +28,31 @@ function LoggedHaui() {
         });
     };
 
+
+    async function handleClickScan() {
+        try {
+
+            let responseScan = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/scan", {}, { withCredentials: true })
+            let dataScan = JSON.parse(responseScan.data?.dataScan)
+
+            alert("Scan thêm được : " + (dataScan?.length || 0) + " môn học mới")
+
+
+            let modules = JSON.parse(localStorage.getItem("module"))
+
+            modules.unshift(...dataScan)
+
+            localStorage.setItem("module", JSON.stringify(modules))
+
+
+
+            window.location.href = "/loggedHaui"
+        } catch (error) {
+            alert(error.response.data.message)
+        }
+
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -43,8 +68,13 @@ function LoggedHaui() {
 
                 if (moduleData.current.length <= 10) {
                     const response = await axios.get("/module.txt");
+                    localStorage.setItem("module", JSON.stringify(response.data))
                     moduleData.current = response.data;
+
                 }
+
+                console.log(moduleData.current);
+
 
                 setIsLogged(true);
             } catch (error) {
@@ -76,7 +106,7 @@ function LoggedHaui() {
                         <h1 style={{ color: "blue" }} >Account Haui: {nameHaui}</h1>
                         <div className={styles.divBtn}>
                             <button className={styles.btn} onClick={() => { navigate("/registerModule") }} >Đăng ký học phần</button>
-                            <button className={styles.btn}>Quét học phần mới (nếu có)</button>
+                            <button className={styles.btn} onClick={handleClickScan} >Quét học phần mới (nếu có)</button>
                         </div>
                         <button className={styles.btn} onClick={() => { navigate("/loginHaui") }} >Đăng nhập acc sinh viên khác</button>
                         <h2 style={{ margin: "10px" }}>Mỗi lần quét học phần sẽ mất 3 xu</h2>
