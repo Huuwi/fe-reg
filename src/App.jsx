@@ -25,7 +25,7 @@ function App() {
   const url = import.meta.env.VITE_BACKEND_URL;
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
-  const location = useLocation();  // Lấy URL hiện tại
+  const location = useLocation();
 
   useEffect(() => {
 
@@ -54,7 +54,7 @@ function App() {
           const response = await axios.get(`${url}/auth/getInforUser`, { withCredentials: true });
           setUserData(response.data?.userData);
           localStorage.setItem("userData", JSON.stringify(response.data?.userData));
-          navigate(location.pathname);  // Điều hướng lại trang hiện tại sau khi lấy dữ liệu user thành công
+          navigate(location.pathname);
         } catch (error) {
           console.log(error?.response?.data?.message);
           localStorage.removeItem("userData")
