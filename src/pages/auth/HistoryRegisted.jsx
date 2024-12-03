@@ -59,9 +59,9 @@ function HistoryRegisted() {
 
         let dataRefund = responeRefund.data;
 
-        console.log(dataRefund);
+        alert("refund thành công!")
 
-        navigate("/")
+        window.location.href = "/historyRegisted"
 
 
 

@@ -73,8 +73,6 @@ function LoggedHaui() {
 
                 }
 
-                console.log(moduleData.current);
-
 
                 setIsLogged(true);
             } catch (error) {

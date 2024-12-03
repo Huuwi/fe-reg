@@ -19,7 +19,6 @@ function HistoryPayment() {
 
             try {
                 let response = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/getHistoryPayment", {}, { withCredentials: true })
-                console.log(response.data.dataPayment);
 
                 htmlData.current = response.data.dataPayment.map((e, i) => {
                     return <div key={i} style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px" }} >

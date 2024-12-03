@@ -19,10 +19,12 @@ const ClassSelection = () => {
         try {
             let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/getInforClass", { id: ModuleId }, { withCredentials: true })
             let data = respone.data
-            if (!data?.length) {
+
+            if (!data?.result?.data?.length) {
                 setDataClasses([{}])
                 return
             }
+
             setDataClasses(data?.result?.data)
         } catch (error) {
             console.log(error);
@@ -39,7 +41,6 @@ const ClassSelection = () => {
             localStorage.setItem("userData", JSON.stringify(data.userData))
             navigate("/registerModule")
             alert(data.result.Message)
-            // console.log(data);
 
 
         } catch (error) {
@@ -54,8 +55,6 @@ const ClassSelection = () => {
         if (!listDate) {
             return null
         }
-        console.log("listDate : ", listDate);
-
 
         const days = new Set(JSON.parse(listDate).map((e) => e.DayStudy));
         return Array.from(days).map((day) => `Thứ ${day}`).join(' ');
@@ -118,9 +117,9 @@ const ClassSelection = () => {
                                 <td>{getTeacherName(cls?.GiaoVien) || "chưa có dữ liệu"}</td>
                                 <td>{getDays(cls?.ListDate) || "chưa có dữ liệu"}</td>
                                 <td>{getTimes(cls?.ListDate) || "chưa có dữ liệu"}</td>
-                                <td>{`${cls?.CountS || "chưa có dữ liệu"}/${cls?.MaxStudent || "chưa có dữ liệu"}`}</td>
+                                <td>{`${cls?.CountS ?? "chưa có dữ liệu"}/${cls?.MaxStudent || "chưa có dữ liệu"}`}</td>
                                 <td>{cls?.BranchName || "chưa có dữ liệu"}</td>
-                                <td>{cls?.IndependentClassId || "chưa có dữ liệu"}</td>
+                                <td>{cls?.IndependentClassID || "chưa có dữ liệu"}</td>
                             </tr>
                         )) : console.log("không có dữ liệu trả về")}
 

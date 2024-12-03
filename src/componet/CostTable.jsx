@@ -49,7 +49,6 @@ function CostTable(props) {
             let data = await axios.post(import.meta.env.VITE_BACKEND_URL + '/auth/createPaymentLink', dataPostCreatePaymentLink, { withCredentials: true })
 
             data = data.data.dataFromCreatePaymentLink
-            // console.log(data.data);
 
             if (data.data?.checkoutUrl) {
 

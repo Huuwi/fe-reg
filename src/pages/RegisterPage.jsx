@@ -20,13 +20,11 @@ const RegisterPage = () => {
         }
 
         try {
-            console.log("call api...");
 
             const response = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/register`,
                 { userName, passWord, rePassWord }, { withCredentials: true }
             );
-            console.log(response.data);
             setError('');
             setSuccess(true);
         } catch (error) {

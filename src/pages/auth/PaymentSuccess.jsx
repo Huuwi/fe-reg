@@ -21,7 +21,6 @@ function PaymentSuccess() {
 
         // Kiểm tra điều kiện
         if (!transId || !username) {
-            console.log("this");
             localStorage.removeItem("userData");
             localStorage.removeItem("rt");
             alert("Có lỗi trong quá trình xác nhận thanh toán!");
