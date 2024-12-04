@@ -18,6 +18,8 @@ function HistoryRegisted() {
 
     let [id, setId] = useState("")
 
+
+
     function handleOnChangeStudentCode(e) {
         setStudentCode(e.target.value);
     }
@@ -29,6 +31,16 @@ function HistoryRegisted() {
     function handleOnChangeId(e) {
         setId(e.target.value);
     }
+
+
+
+
+
+
+
+
+
+
 
 
     async function handleClick() {
@@ -47,9 +59,9 @@ function HistoryRegisted() {
             return
         }
 
-        let responeRefund
+        let refundData
         try {
-            responeRefund = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/refund", { studentCode, passWordHaui, id }, { withCredentials: true })
+            refundData = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/refund", { studentCode, passWordHaui, id }, { withCredentials: true })
 
         } catch (error) {
             console.log(error.response.data.message);
@@ -57,7 +69,7 @@ function HistoryRegisted() {
             return
         }
 
-        let dataRefund = responeRefund.data;
+        let dataRefund = refundData.data;
 
         alert("refund thành công!")
 
@@ -162,8 +174,8 @@ function HistoryRegisted() {
                                 <button style={{ maxHeight: "60px", margin: "10px" }} onClick={handleClick} >  Xác nhận </button>
 
                             </div>
-
                             <h2>Bảng lịch sử đăng ký môn học bằng web (Copy thông tin dưới đây để điền vào form) : </h2>
+
                             {htmlData.current}
 
                         </div>
