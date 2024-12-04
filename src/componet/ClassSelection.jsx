@@ -75,10 +75,8 @@ const ClassSelection = () => {
             return null;
         }
         const teachers = JSON.parse(teacherData);
-        return teachers[0] ? teachers[0].Fullname : null;
+        return teachers?.length ? teachers.map((e) => { return e.Fullname }).join(" - ") : null;
     };
-
-
 
 
 

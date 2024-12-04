@@ -35,15 +35,21 @@ function LoggedHaui() {
             let responseScan = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/scan", {}, { withCredentials: true })
             let dataScan = JSON.parse(responseScan.data?.dataScan)
 
-            alert("Scan thêm được : " + (dataScan?.length || 0) + " môn học mới")
 
 
             let modules = JSON.parse(localStorage.getItem("module"))
 
-            modules.unshift(...dataScan)
+            let oldLength = modules.length
+
+            modules.unshift(...dataScan);
+
+            modules = Array.from(new Set(modules.map(JSON.stringify))).map(JSON.parse);
+
+            let newLength = modules.length
 
             localStorage.setItem("module", JSON.stringify(modules))
 
+            alert("Scan thêm được : " + (newLength - oldLength || 0) + " môn học mới")
 
 
             window.location.href = "/loggedHaui"
