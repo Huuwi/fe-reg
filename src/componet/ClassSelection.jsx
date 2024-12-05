@@ -35,13 +35,12 @@ const ClassSelection = () => {
 
     const handleRegister = async () => {
         try {
-            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId, moduleId: userModuleId }, { withCredentials: true })
+            let respone = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/registerClass", { classCode: registeredId.trim(), moduleId: userModuleId.trim() }, { withCredentials: true })
             let data = respone.data
             localStorage.removeItem("userData")
             localStorage.setItem("userData", JSON.stringify(data.userData))
-            navigate("/registerModule")
             alert(data.result.Message)
-
+            window.location.reload()
 
         } catch (error) {
             console.log(error);
