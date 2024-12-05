@@ -59,6 +59,10 @@ function LoginPage() {
                     <h3 className={styles.notification} >chú ý !! tài khoản và mật khẩu không chứa các ký tự đặc biệt , chỉ chứa các ký tự từ 0-9,a-z,A-Z</h3>
                 </div>
 
+                <h2 style={{ color: "red", backgroundColor: "white", margin: "10px" }}>Ae có thể xem hướng dẫn sử dụng website trên youtube tại đây : </h2>
+                <h2 style={{ color: "red", backgroundColor: "white", margin: "10px" }}> <a href="https://www.youtube.com/watch?v=lGIiLFzl0pQ" style={{ color: "green" }} target="_blank">video hướng dẫn 1 : (hướng dẫn nạp tiền dùng mã giới thiệu)</a></h2>
+                <h2 style={{ color: "red", backgroundColor: "white" }}> <a href="https://youtu.be/zs4LVHfs6cA" style={{ color: "green" }} target="_blank">video hướng dẫn 2 : (hướng dẫn chức năng đăng ký học phần , refund xu nếu đăng ký không thành công) </a></h2>
+
             </div>
         </>
     )

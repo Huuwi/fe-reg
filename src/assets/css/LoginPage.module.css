@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    flex-direction: column;
     /* Thêm padding để tạo không gian giữa màn hình và nội dung */
 }
 

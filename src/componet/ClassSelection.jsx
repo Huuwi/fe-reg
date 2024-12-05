@@ -82,6 +82,7 @@ const ClassSelection = () => {
     return (
         <div className={styles.container} style={{}}>
             <h3 style={{ color: "red", fontSize: "21px" }} >Chú ý ! nếu không nhập id học phần hoặc nhập id học phần không khớp với mã lớp, hệ thống sẽ không thể refund xu !</h3>
+            <h3 style={{ color: "red", fontSize: "21px" }} >Ae có thể đăng ký thành công mọi học phần (kể cả ngoài dự kiến , yêu cầu tiên quyết , và ngoài thgian đăng ký chính thức)</h3>
             <div className={styles.section}>
                 <input
                     type="text"
