@@ -73,7 +73,7 @@ function HistoryRegisted() {
 
         alert("refund thành công!")
 
-        window.location.href = "/historyRegisted"
+        window.location.reload()
 
 
 
