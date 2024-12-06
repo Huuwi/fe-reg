@@ -11,7 +11,7 @@ const ModuleTable = ({ moduleData }) => {
 
         nameModule = nameModule.normalize("NFKD").replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", '')
 
-        if (nameModule.length < 3) {
+        if (nameModule.length < 1) {
             return
         }
 
