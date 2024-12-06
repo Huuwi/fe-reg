@@ -75,6 +75,7 @@ function CostTable(props) {
             <div className={styles.wrapper} >
                 <div>
                     <span style={{ backgroundColor: "white", fontSize: "25px", margin: "20px 0px 20px 20px", color: "red" }} >chú ý!! Ưu đãi chuyển qua account có mã giới thiệu được nhập bên dưới với ưu đãi = {costTable[idSelected]?.salesReferral * 100}% giá trị nạp ({`chỉ ưu đãi cho account khác`.toUpperCase()}) </span>
+                    <span style={{ backgroundColor: "white", fontSize: "25px", margin: "20px 0px 20px 20px", color: "red" }} >chú ý!!Giá trị quy đổi với không ưu đãi 1 nhìn VND tương đương với 1xu ({`chỉ ưu đãi cho account khác`.toUpperCase()}) </span>
                     {divsTypeCost}
                     <input type="text" placeholder="nhập mã giới thiệu ở đây để nhận ưu đãi" style={{ maxWidth: "500px" }} onChange={handleOnchageReferral} />
                 </div>
