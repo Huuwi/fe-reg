@@ -15,6 +15,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 import HistoryPayment from "./pages/auth/HistoryPayment.jsx";
 import HistoryRegisted from "./pages/auth/HistoryRegisted.jsx";
 import SearchRemoveTrans from "./pages/auth/SearchRemoveTrans.jsx";
+import RemoveAndView from "./pages/auth/RemoveAndView.jsx";
 
 import ERSA from "./helper/ERSA.js"
 import sha256 from "./helper/ESHA256.js";
@@ -86,6 +87,7 @@ function App() {
         <Route path="/historyPayment" element={<HistoryPayment />} />
         <Route path="/historyRegisted" element={<HistoryRegisted />} />
         <Route path="/searchRemoveTrans" element={<SearchRemoveTrans />} />
+        <Route path="/removeAndView" element={<RemoveAndView />} />
       </Routes>
     </>
   );

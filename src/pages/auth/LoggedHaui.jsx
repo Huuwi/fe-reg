@@ -35,8 +35,6 @@ function LoggedHaui() {
             let responseScan = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/scan", {}, { withCredentials: true })
             let dataScan = JSON.parse(responseScan.data?.dataScan)
 
-
-
             let modules = JSON.parse(localStorage.getItem("module"))
 
             let oldLength = modules.length
@@ -76,10 +74,7 @@ function LoggedHaui() {
                     const response = await axios.get("/module.txt");
                     localStorage.setItem("module", JSON.stringify(response.data))
                     moduleData.current = response.data;
-
                 }
-
-
                 setIsLogged(true);
             } catch (error) {
                 localStorage.removeItem("nameHaui");
@@ -112,7 +107,10 @@ function LoggedHaui() {
                             <button className={styles.btn} onClick={() => { navigate("/registerModule") }} >Đăng ký học phần</button>
                             <button className={styles.btn} onClick={handleClickScan} >Quét học phần mới (nếu có)</button>
                         </div>
-                        <button className={styles.btn} onClick={() => { navigate("/loginHaui") }} >Đăng nhập acc sinh viên khác</button>
+                        <div className={styles.divBtn}>
+                            <button className={styles.btn} onClick={() => { navigate("/loginHaui") }} >Đăng nhập acc sinh viên khác</button>
+                            <button className={styles.btn} onClick={() => { navigate("/removeAndView") }} >Hủy học phần , xem học phần đã đăng ký</button>
+                        </div>
                         <h2 style={{ margin: "10px" }}>Mỗi lần quét học phần sẽ mất 3 xu</h2>
                         <h2 style={{ margin: "10px", color: "red" }}>Copy id học phần muốn đăng ký !!</h2>
                         <h2 style={{ margin: "10px" }}>Bảng học phần:</h2>
