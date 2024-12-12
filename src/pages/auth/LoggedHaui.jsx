@@ -84,7 +84,7 @@ function LoggedHaui() {
             } catch (error) {
                 localStorage.removeItem("nameHaui");
                 console.log(error);
-                alert("Phiên đăng nhập HAUI của bạn đã hết hạn!!");
+                alert("Bạn chưa làm khảo sát trên hệ thống hoặc phiên đăng nhập HAUI hết hạn!!");
                 navigate("/loginHaui");
             }
         };

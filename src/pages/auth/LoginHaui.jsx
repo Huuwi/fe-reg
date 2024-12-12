@@ -10,10 +10,15 @@ const LoginHaui = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isHovered, setIsHovered] = useState(false);
+    const [isClicked, setIsClicked] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (isClicked) {
+            alert("Vui lòng đợi xử lý đăng nhập")
+            return
+        }
+        isClicked = true
         try {
             const data = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/auth/loginHaui`,
