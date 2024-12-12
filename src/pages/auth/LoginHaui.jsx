@@ -18,7 +18,7 @@ const LoginHaui = () => {
             alert("Vui lòng đợi xử lý đăng nhập")
             return
         }
-        isClicked = true
+        setIsClicked(true)
         try {
             const data = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/auth/loginHaui`,
