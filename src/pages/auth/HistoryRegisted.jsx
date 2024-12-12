@@ -18,6 +18,8 @@ function HistoryRegisted() {
 
     let [id, setId] = useState("")
 
+    let [isClickedRefund, setIsClickedRefund] = useState(false)
+
 
 
     function handleOnChangeStudentCode(e) {
@@ -39,23 +41,26 @@ function HistoryRegisted() {
 
 
 
-
-
-
-
     async function handleClick() {
 
+        if (isClickedRefund) {
+            alert("Vui lòng đợi")
+            return
+        }
+        setIsClickedRefund(true)
         let dataReg = data.current.find((e) => {
             return e?.id == id
         })
 
         if (!dataReg) {
             alert("id nhập vào không tồn tại!")
+            setIsClickedRefund(false)
             return
         }
 
         if (dataReg?.isrefund) {
             alert("id này đã yêu hoàn xu trước đó rồi!")
+            setIsClickedRefund(false)
             return
         }
 
@@ -66,12 +71,13 @@ function HistoryRegisted() {
         } catch (error) {
             console.log(error.response.data.message);
             alert(error.response.data.message)
+            setIsClickedRefund(false)
             return
         }
 
-        let dataRefund = refundData.data;
 
         alert("refund thành công!")
+        setIsClickedRefund(false)
 
         window.location.reload()
 

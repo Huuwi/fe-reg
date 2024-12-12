@@ -13,6 +13,8 @@ function SearchRemoveTrans() {
 
     let [classCodeRemove, setClassCodeRemove] = useState("")
 
+    let [isClickedRemove, setIsClickedRemove] = useState(false)
+    let [isClickedGetList, setIsClickedGetList] = useState(false)
 
     function handleOnChangeStudentCodeRemove(e) {
         setStudentCodeRemove(e.target.value);
@@ -57,8 +59,13 @@ function SearchRemoveTrans() {
     }
 
     async function handleClickSearch() {
+        if (isClickedGetList) {
+            alert("Vui lòng đợi!")
+            return
+        }
+        setIsClickedGetList(true)
 
-        alert("Đã đã yêu cầu tra cứu vui lòng đợi kết quả!")
+        alert("Đã yêu cầu tra cứu vui lòng đợi kết quả!")
 
         let responseSearch
         try {
@@ -67,6 +74,7 @@ function SearchRemoveTrans() {
         } catch (error) {
             console.log(error.response.data.message);
             alert(error.response.data.message)
+            setIsClickedGetList(true)
             return
         }
 
@@ -76,10 +84,13 @@ function SearchRemoveTrans() {
             nameHaui: responseSearch.data.nameHaui,
             dataOrder: dataSearch.data_ordered
         })
+        setIsClickedGetList(false)
+
 
     }
 
     async function handleClickTrans() {
+
         alert("Đang tiến hành chuyển tiền , vui lòng đợi!")
 
         let responseTrans
@@ -92,8 +103,6 @@ function SearchRemoveTrans() {
             return
         }
 
-        let dataTrans = responseTrans.data;
-
         window.location.reload()
     }
 
@@ -103,8 +112,12 @@ function SearchRemoveTrans() {
 
 
     async function handleClickRemove() {
+        if (isClickedRemove) {
+            alert("Vui lòng đợi!")
+            return
+        }
         alert("Đã xác nhận hủy , vui lòng đợi gửi đơn!")
-
+        setIsClickedRemove(true)
         let responeRemove
         try {
             responeRemove = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/removeClass", { studentCodeRemove, passWordHauiRemove, classCodeRemove }, { withCredentials: true })
@@ -112,14 +125,11 @@ function SearchRemoveTrans() {
         } catch (error) {
             console.log(error.response.data.message);
             alert(error.response.data.message)
+            setIsClickedRemove(false)
             return
         }
-
-        let dataRemove = responeRemove.data;
-
+        setIsClickedRemove(false)
         alert(responeRemove.data.result.Message)
-
-
     }
 
     return (

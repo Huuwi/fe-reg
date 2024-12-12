@@ -29,6 +29,7 @@ const LoginHaui = () => {
             navigate("/loggedHaui")
 
         } catch (error) {
+            setIsClicked(false)
             alert('Tài khoản hoặc mật khẩu chưa chính xác');
         }
     };
