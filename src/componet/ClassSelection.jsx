@@ -103,6 +103,7 @@ const ClassSelection = () => {
                             <th>Tiết học</th>
                             <th>Số lượng</th>
                             <th>Cơ sở</th>
+                            <th>Mô tả</th>
                             <th>Mã lớp</th>
                         </tr>
                     </thead>
@@ -117,6 +118,7 @@ const ClassSelection = () => {
                                 <td>{getTimes(cls?.ListDate) || "chưa có dữ liệu"}</td>
                                 <td>{`${cls?.CountS ?? "chưa có dữ liệu"}/${cls?.MaxStudent || "chưa có dữ liệu"}`}</td>
                                 <td>{cls?.BranchName || "chưa có dữ liệu"}</td>
+                                <td>{cls?.Description || " "}</td>
                                 <td>{cls?.IndependentClassID || "chưa có dữ liệu"}</td>
                             </tr>
                         )) : console.log("không có dữ liệu trả về")}
