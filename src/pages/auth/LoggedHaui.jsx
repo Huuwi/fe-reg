@@ -61,8 +61,14 @@ function LoggedHaui() {
         const fetchData = async () => {
             try {
                 const ping = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/pingHaui", {}, { withCredentials: true });
-                nameHaui = ping.data.nameHaui;
+                // nameHaui = ping.data.nameHaui;
                 localStorage.setItem("nameHaui", nameHaui);
+
+                let { err } = ping.data;
+
+                if (err) {
+                    console.log("Không có lớp học này !");
+                }
 
                 try {
                     moduleData.current = JSON.parse(localStorage.getItem("module")) || [];
@@ -77,7 +83,6 @@ function LoggedHaui() {
                 }
                 setIsLogged(true);
             } catch (error) {
-                localStorage.removeItem("nameHaui");
                 console.log(error);
                 alert("Bạn chưa làm khảo sát trên hệ thống hoặc phiên đăng nhập HAUI hết hạn!!");
                 navigate("/loginHaui");
