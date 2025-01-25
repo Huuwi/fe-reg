@@ -62,7 +62,7 @@ function LoggedHaui() {
             try {
                 const ping = await axios.post(import.meta.env.VITE_BACKEND_URL + "/auth/pingHaui", {}, { withCredentials: true });
                 // nameHaui = ping.data.nameHaui;
-                localStorage.setItem("nameHaui", nameHaui);
+                // localStorage.setItem("nameHaui", nameHaui);
 
                 let { err } = ping.data;
 
