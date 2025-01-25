@@ -12,7 +12,7 @@ function LoggedHaui() {
     const [isVisible, setIsVisible] = useState(false);
     let jsonData = localStorage.getItem("userData");
     let userData = JSON.parse(jsonData);
-    let nameHaui = localStorage.getItem("nameHaui") || "none";
+    let nameHaui = localStorage.getItem("nameHaui") || "Bạn cần làm khảo sát trên hệ thống để có thể tiếp tục";
     let moduleData = useRef([]);
 
 
